@@ -22,6 +22,11 @@ def get_db():
         yield db
     finally:
         db.close()
+@app.get('/')
+def welcome():
+    return {f'Home page of fastapi and i have connected with azure MySQL database '}
+
+
 @app.get('/predictions')
 def prediction_table(db:Session=Depends(get_db)):
     predicted=db.query(model.logistic_api).all()
