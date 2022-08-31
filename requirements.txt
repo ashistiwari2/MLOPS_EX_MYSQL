@@ -1,0 +1,8 @@
+fastapi
+sklearn
+pandas
+sqlalchemy
+uvicorn
+pydantic
+psycopg2
+mysql-connector-python
