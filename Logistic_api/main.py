@@ -1,4 +1,4 @@
-from fastapi import FastAPI,HTTPException,status
+from fastapi import FastAPI,HTTPException,status,Request,Form
 from Logistic_api import schema
 from Logistic_api import model
 from Logistic_api.database import engine, SessionLocal
@@ -6,6 +6,9 @@ from fastapi.params import Depends
 from sqlalchemy.orm import  Session
 from sklearn.linear_model import LogisticRegression
 import pandas as pd
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 file_csv=pd.read_csv("Logistic_api/Fish.csv")
 x=file_csv.iloc[:,1:].values
 y=file_csv.iloc[:,0:-6].values
@@ -22,6 +25,33 @@ def get_db():
         yield db
     finally:
         db.close()
+ 
+@app.get("/frontend", response_class=HTMLResponse)
+async def read_item(request: Request):
+    weight = ""
+    length1=""
+    length2=''
+    length3=''
+    height=''
+    width=''
+    species=''
+
+    return templates.TemplateResponse("item.html",context={'request': request, 'weight': weight,'length1':length1,'length2':length2,'length3':length3,'height':height,'width':width,'species':species})
+@app.post("/frontend")
+def form_post(request: Request, Weight: float = Form(...),Length1:float=Form(...),Length2:float=Form(...),Length3:float=Form(...),Height:float=Form(...),Width:float=Form(...)):
+    weight =Weight
+    length1=Length1
+    length2=Length2
+    length3=Length3
+    height=Height
+    width=Width
+    test_data = [[weight, length1, length2,length3, height, width]]
+    class_idx = clf.predict(test_data)[0]
+    species = class_idx
+
+
+    return templates.TemplateResponse('item.html', context={'request': request, 'weight': weight,'length1':length1,'length2':length2,'length3':length3,'height':height,'width':width,'species':species})
+
 @app.get('/')
 def welcome():
     return {f'Home page of fastapi and i have connected with azure MySQL database '}
