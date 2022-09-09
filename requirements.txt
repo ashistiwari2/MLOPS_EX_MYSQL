@@ -9,4 +9,7 @@ mysql-connector-python
 jinja2
 multipart
 request
+urllib3
+uvloop
+httptools
 
