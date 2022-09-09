@@ -1,0 +1,74 @@
+<html>
+<head>
+    <title>Prediction Details</title>
+    <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div id="predicted_value">
+        <form method="post" name="prediction"  >
+            <fieldset>
+
+                <div class="input-box">
+                    <label for="Weight">Enter Weight(float):</label><br>
+    <input type="float" name="Weight" value="1.0"/><br><br>
+                </div>
+                <div class="input-box">
+                     <label for="Length1">Enter Length1(float):</label><br>
+        <input type="float" name="Length1" value="2.0"/><br><br>
+                </div>
+                <div class="input-box">
+                    <label for="Length2">Enter Length2(float):</label><br>
+
+        <input type="float" name="Length2" value="3.0"/><br><br>
+                </div>
+                <div class="input-box">
+                     <label for="Length3">Enter Length3(float):</label><br>
+         <input type="float" name="Length3" value="4.0"/><br><br>
+                </div>
+                <div class="input-box">
+                    <label for="Height">Enter Height(float):</label><br>
+         <input type="float" name="Height" value="5.0"/><br><br>
+                </div>
+                <div class="input-box">
+                    <label for="Width">Enter Width(float):</label><br>
+         <input type="float" name="Width" value="6.0"/><br><br>
+                </div>
+
+
+
+
+
+
+
+    <input type="submit" class="button1">
+            </fieldset>
+</form>
+
+    </div>
+<table style="width:100%" class="predicted_table">
+  <tr>
+    <th>Weight</th>
+    <th>Length1</th>
+    <th>Length2</th>
+      <th>Length3</th>
+      <th>Height</th>
+      <th>Width</th>
+      <th>Species</th>
+
+
+  </tr>
+  <tr>
+    <td>{{ weight }}</td>
+    <td>{{length1}}</td>
+    <td>{{length2}}</td>
+      <td>{{length3}}</td>
+    <td>{{height}}</td>
+      <td>{{width}}</td>
+      <td>{{species}}</td>
+
+  </tr>
+
+</table>
+
+</body>
+</html>
