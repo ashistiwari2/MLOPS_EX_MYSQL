@@ -6,3 +6,4 @@ uvicorn
 pydantic
 psycopg2
 mysql-connector-python
+jinja2
