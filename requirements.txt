@@ -8,7 +8,6 @@ psycopg2
 mysql-connector-python
 jinja2
 python-multipart
-request
 urllib3
 uvloop
 httptools
