@@ -17,6 +17,10 @@ app=FastAPI(
 description="To determine Species of Fish given all the parameters"
 )
 model.Base.metadata.create_all(engine)
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
+templates = Jinja2Templates(directory="templates")
 clf = LogisticRegression()
 clf.fit(x,y)
 def get_db():
