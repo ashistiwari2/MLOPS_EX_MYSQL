@@ -7,7 +7,7 @@ pydantic
 psycopg2
 mysql-connector-python
 jinja2
-multipart
+python-multipart
 request
 urllib3
 uvloop
