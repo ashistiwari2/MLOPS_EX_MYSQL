@@ -4,19 +4,24 @@ from Logistic_api import model
 from Logistic_api.database import engine, SessionLocal
 from fastapi.params import Depends
 from sqlalchemy.orm import  Session
-from sklearn.linear_model import LogisticRegression
-import pandas as pd
+# from sklearn.linear_model import LogisticRegression
+# import pandas as pd
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-file_csv=pd.read_csv("Logistic_api/Fish.csv")
-x=file_csv.iloc[:,1:].values
-y=file_csv.iloc[:,0:-6].values
+import joblib
+# file_csv=pd.read_csv("Logistic_api/Fish.csv")
+# x=file_csv.iloc[:,1:].values
+# y=file_csv.iloc[:,0:-6].values
 app=FastAPI(
     title="Logistic ML API With Connection to Azure Mysql Database",
 description="To determine Species of Fish given all the parameters"
 )
 model.Base.metadata.create_all(engine)
+pipe_lr = joblib.load(open("Logistic_api/logistic_model/fishapipred (1).pkl","rb"))
+def predict(docx):
+    results = pipe_lr.predict(docx)
+    return results[0]
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
@@ -50,7 +55,8 @@ def form_post(request: Request, Weight: float = Form(...),Length1:float=Form(...
     height=Height
     width=Width
     test_data = [[weight, length1, length2,length3, height, width]]
-    class_idx = clf.predict(test_data)[0]
+    class_idx =predict(test_data)
+    #clf.predict(test_data)[0]
     species = class_idx
 
 
@@ -97,7 +103,8 @@ async def add(request:schema.logistic,db:Session=Depends(get_db)):
         request.Height,
         request.Width
     ]]
-    class_idx = clf.predict(test_data)[0]
+    class_idx = predict(test_data)
+    #clf.predict(test_data)[0]
     request.Species=class_idx
     new_logistic_api = model.logistic_api(Weight=request.Weight,Length1=request.Length1,Length2=request.Length2,Length3=request.Length3,Height=request.Height,Width=request.Width,Species=request.Species)
     db.add(new_logistic_api)
