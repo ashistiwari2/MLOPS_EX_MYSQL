@@ -9,7 +9,7 @@ from sqlalchemy.orm import  Session
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from sklearn.externals import joblib 
+import joblib 
 # file_csv=pd.read_csv("Logistic_api/Fish.csv")
 # x=file_csv.iloc[:,1:].values
 # y=file_csv.iloc[:,0:-6].values
