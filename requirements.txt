@@ -12,3 +12,4 @@ urllib3
 uvloop
 httptools
 joblib==1.0.1
+scikit-learn==1.0.2
