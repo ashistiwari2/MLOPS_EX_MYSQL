@@ -4,6 +4,7 @@ from Logistic_api import model
 from Logistic_api.database import engine, SessionLocal
 from fastapi.params import Depends
 from sqlalchemy.orm import  Session
+import warnings
 # from sklearn.linear_model import LogisticRegression
 # import pandas as pd
 from fastapi.responses import HTMLResponse
@@ -18,7 +19,9 @@ app=FastAPI(
 description="To determine Species of Fish given all the parameters"
 )
 model.Base.metadata.create_all(engine)
-pipe_lr = joblib.load(open("Logistic_api/logistic_model/fishapipred (1).pkl","rb"))
+with warnings.catch_warnings():
+      warnings.simplefilter("ignore", category=UserWarning)
+      pipe_lr = joblib.load(open("Logistic_api/logistic_model/fishapipred (1).pkl","rb"))
 def predict(docx):
     results = pipe_lr.predict(docx)
     return results[0]
