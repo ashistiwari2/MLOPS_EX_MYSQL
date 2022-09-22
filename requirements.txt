@@ -11,4 +11,4 @@ python-multipart
 urllib3
 uvloop
 httptools
-joblib==1.0.2 
+joblib==1.1.0 
