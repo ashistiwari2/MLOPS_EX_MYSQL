@@ -1,5 +1,5 @@
 fastapi
-sklearn==1.0.2
+sklearn==0.0
 pandas
 sqlalchemy
 uvicorn
@@ -12,4 +12,3 @@ urllib3
 uvloop
 httptools
 joblib==1.0.1
-scikit-learn==1.0.2
