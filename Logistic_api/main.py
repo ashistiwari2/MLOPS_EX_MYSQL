@@ -15,7 +15,7 @@ import joblib
 # x=file_csv.iloc[:,1:].values
 # y=file_csv.iloc[:,0:-6].values
 app=FastAPI(
-    title="Logistic ML API With Connection to Azure Mysql Database",
+    title="Linear Discrimant Analysis ML API With Connection to Azure Mysql Database",
 description="To determine Species of Fish given all the parameters"
 )
 model.Base.metadata.create_all(engine)
