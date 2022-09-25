@@ -54,7 +54,7 @@ async def read_item(request: Request):
 
     return templates.TemplateResponse("item.html",context={'request': request, 'weight': weight,'length1':length1,'length2':length2,'length3':length3,'height':height,'width':width,'species':species})
 @app.post("/frontend")
-def form_post(request: Request, Weight: float = Form(...),Length1:float=Form(...),Length2:float=Form(...),Length3:float=Form(...),Height:float=Form(...),Width:float=Form(...)):
+def form_post(request: Request, Weight: float = Form(...),Length1:float=Form(...),Length2:float=Form(...),Length3:float=Form(...),Height:float=Form(...),Width:float=Form(...),db:Session=Depends(get_db)):
     weight =Weight
     length1=Length1
     length2=Length2
