@@ -83,12 +83,12 @@ def prediction_table(db:Session=Depends(get_db)):
     predicted=db.query(model.logistic_api).all()
     return predicted
 
-@app.get('/predictions/{id}')
-def prediction_table(id:int,db:Session=Depends(get_db)):
-    predicted=db.query(model.logistic_api).filter(model.logistic_api.id==id).first()
-    if not predicted:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Id Not Found")
-    return predicted
+# @app.get('/predictions/{id}')
+# def prediction_table(id:int,db:Session=Depends(get_db)):
+#     predicted=db.query(model.logistic_api).filter(model.logistic_api.id==id).first()
+#     if not predicted:
+#         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Id Not Found")
+#     return predicted
 
 @app.delete('/predictions/{id}')
 def delete(id:int,db:Session=Depends(get_db)):
@@ -96,14 +96,14 @@ def delete(id:int,db:Session=Depends(get_db)):
     db.commit()
     return {f'Prediction with id:{id} deleted succesfully'}
 
-@app.put('/predictions/{id}')
-def update(id:int,request:schema.logistic,db:Session=Depends(get_db)):
-    update1=db.query(model.logistic_api).filter(model.logistic_api.id==id)
-    if not update1.first():
-        pass
-    update1.update(request.dict())
-    db.commit()
-    return{f'succesfully updated id:{id}'}
+# @app.put('/predictions/{id}')
+# def update(id:int,request:schema.logistic,db:Session=Depends(get_db)):
+#     update1=db.query(model.logistic_api).filter(model.logistic_api.id==id)
+#     if not update1.first():
+#         pass
+#     update1.update(request.dict())
+#     db.commit()
+#     return{f'succesfully updated id:{id}'}
 @app.post('/predict',status_code=status.HTTP_201_CREATED)
 async def add(request:schema.logistic,db:Session=Depends(get_db)):
     test_data=[[
