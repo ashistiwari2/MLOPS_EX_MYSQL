@@ -50,6 +50,7 @@ async def read_item(request: Request):
     height=''
     width=''
     species=''
+    
 
     return templates.TemplateResponse("item.html",context={'request': request, 'weight': weight,'length1':length1,'length2':length2,'length3':length3,'height':height,'width':width,'species':species})
 @app.post("/frontend")
@@ -64,6 +65,10 @@ def form_post(request: Request, Weight: float = Form(...),Length1:float=Form(...
     class_idx =predict(test_data)
     #clf.predict(test_data)[0]
     species = class_idx
+    new_logistic_api = model.logistic_api(Weight=Weight,Length1=Length1,Length2=Length2,Length3=Length3,Height=Height,Width=Width,Species=species)
+    db.add(new_logistic_api)
+    db.commit()
+    db.refresh(new_logistic_api)
 
 
     return templates.TemplateResponse('item.html', context={'request': request, 'weight': weight,'length1':length1,'length2':length2,'length3':length3,'height':height,'width':width,'species':species})
