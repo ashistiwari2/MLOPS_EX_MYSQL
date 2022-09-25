@@ -5,13 +5,13 @@ from Logistic_api.database import engine, SessionLocal
 from fastapi.params import Depends
 from sqlalchemy.orm import  Session
 # import warnings
-import pickle
+#import pickle
 # from sklearn.linear_model import LogisticRegression
 # import pandas as pd
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-# import joblib 
+import joblib 
 # file_csv=pd.read_csv("Logistic_api/Fish.csv")
 # x=file_csv.iloc[:,1:].values
 # y=file_csv.iloc[:,0:-6].values
@@ -20,8 +20,8 @@ app=FastAPI(
 description="To determine Species of Fish given all the parameters"
 )
 model.Base.metadata.create_all(engine)
-file_model=open("Logistic_api/logistic_model/fishapipred (1).pkl","rb")
-pipe_lr=pickle.load(file_model)
+#file_model=open("Logistic_api/logistic_model/fishapipred (1).pkl","rb")
+pipe_lr=joblib.load("Logistic_api/logistic_model/fishapipred (1).pkl")
 # with warnings.catch_warnings():
 #       warnings.simplefilter("ignore", category=UserWarning)
 #       pipe_lr = joblib.load(open("Logistic_api/logistic_model/fishapipred (1).pkl","rb"))
