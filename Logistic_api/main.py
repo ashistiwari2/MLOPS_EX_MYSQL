@@ -21,7 +21,7 @@ description="To determine Species of Fish given all the parameters"
 )
 model.Base.metadata.create_all(engine)
 #file_model=open("Logistic_api/logistic_model/fishapipred (1).pkl","rb")
-pipe_lr=joblib.load("Logistic_api/logistic_model/fishapipred (1).pkl")
+pipe_lr=joblib.load("Logistic_api/logistic_model/fishapipred (1).pkl","rb")
 # with warnings.catch_warnings():
 #       warnings.simplefilter("ignore", category=UserWarning)
 #       pipe_lr = joblib.load(open("Logistic_api/logistic_model/fishapipred (1).pkl","rb"))
