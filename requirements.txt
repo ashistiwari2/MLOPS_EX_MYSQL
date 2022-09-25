@@ -5,10 +5,11 @@ sqlalchemy
 uvicorn
 pydantic
 psycopg2
-mysql-connector-python
+mysql-connector-python==8.0.29
 jinja2
 python-multipart
 urllib3
 uvloop
 httptools
-joblib
+scikit-learn
+gunicorn==19.9.0
