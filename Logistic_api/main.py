@@ -20,13 +20,13 @@ app=FastAPI(
 description="To determine Species of Fish given all the parameters"
 )
 model.Base.metadata.create_all(engine)
-#with open("fastapi.pkl","rb") as file_model:
-    #pipe_lr=pickle.load(file_model)
+with open("fastapi.pkl","rb") as file_model:
+    pipe_lr=pickle.load(file_model)
 #file_model=open("fastapi.pkl","rb")
 #pipe_lr=pickle.load(file_model)
-with warnings.catch_warnings():
-      warnings.simplefilter("ignore", category=UserWarning)
-      pipe_lr = joblib.load(open("fastapi.pkl","rb",1))
+# with warnings.catch_warnings():
+#       warnings.simplefilter("ignore", category=UserWarning)
+#       pipe_lr = joblib.load(open("fastapi.pkl","rb",1))
 def predict(docx):
     results = pipe_lr.predict(docx)
     return results[0]
