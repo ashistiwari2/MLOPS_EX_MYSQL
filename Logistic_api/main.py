@@ -4,7 +4,7 @@ from Logistic_api import model
 from Logistic_api.database import engine, SessionLocal
 from fastapi.params import Depends
 from sqlalchemy.orm import  Session
-# import warnings
+import warnings
 import pickle
 # from sklearn.linear_model import LogisticRegression
 # import pandas as pd
@@ -20,13 +20,13 @@ app=FastAPI(
 description="To determine Species of Fish given all the parameters"
 )
 model.Base.metadata.create_all(engine)
-with open("fastapi.pkl","rb") as file_model:
-    pipe_lr=pickle.load(file_model)
+#with open("fastapi.pkl","rb") as file_model:
+    #pipe_lr=pickle.load(file_model)
 #file_model=open("fastapi.pkl","rb")
 #pipe_lr=pickle.load(file_model)
-# with warnings.catch_warnings():
-#       warnings.simplefilter("ignore", category=UserWarning)
-#       pipe_lr = joblib.load(open("Logistic_api/logistic_model/fishapipred (1).pkl","rb"))
+with warnings.catch_warnings():
+      warnings.simplefilter("ignore", category=UserWarning)
+      pipe_lr = joblib.load(open("fastapi.pkl","rb",1))
 def predict(docx):
     results = pipe_lr.predict(docx)
     return results[0]
