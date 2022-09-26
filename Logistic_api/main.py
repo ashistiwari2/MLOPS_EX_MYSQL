@@ -20,7 +20,7 @@ app=FastAPI(
 description="To determine Species of Fish given all the parameters"
 )
 model.Base.metadata.create_all(engine)
-file_model=open("Logistic_api/logistic_model/fastapi.pkl","rb")
+file_model=open("fastapi.pkl","rb")
 pipe_lr=pickle.load(file_model)
 # with warnings.catch_warnings():
 #       warnings.simplefilter("ignore", category=UserWarning)
