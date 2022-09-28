@@ -28,7 +28,7 @@ pipeline {
             }
             stage('Run Docker Image And Expose API'){
                 steps {
-                sh "docker run --name fastapiapp fastapi:v1"
+                sh "docker run --name fastapiapp23 fastapi:v1"
                 }
             }
             stage("Testing Application"){
