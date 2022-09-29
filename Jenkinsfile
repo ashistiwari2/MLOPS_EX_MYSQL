@@ -28,12 +28,12 @@ pipeline {
             }
             stage('Run Docker Image And Expose API'){
                 steps {
-                sh "docker run -d -p 5000:5000 --name fastapiapp fastapi:v1"
+                sh "docker run -d -p 8087:8008 --name fastapiapp fastapi:v1"
                 }
             }
             stage("Testing Application"){
                 steps {
-                   echo "Run it at localhost:5000"
+                   echo "Run it at localhost:8007"
 
 
 
