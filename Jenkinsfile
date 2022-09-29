@@ -17,7 +17,7 @@ pipeline {
             }
             stage('Verify The Steps') {
                 steps{
-                    bat 'cat Jenkinsfile'
+                    bat 'type Jenkinsfile'
                 }
             }
             
