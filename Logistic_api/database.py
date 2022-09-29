@@ -5,7 +5,7 @@ import os
 import urllib
 
 # SQLALCHEMY_DATABASE_URL = "sqlite:///./logistic.db"
-host_server = os.environ.get('host_server', 'localhost')
+host_server = os.environ.get('host_server', ' 127.0.0.1')
 db_server_port = urllib.parse.quote_plus(str(os.environ.get('db_server_port', '3306')))
 database_name = os.environ.get('database_name', 'fastapi_app')
 db_username = urllib.parse.quote_plus(str(os.environ.get('db_username', 'ashistiwari2')))
