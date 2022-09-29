@@ -12,23 +12,23 @@ pipeline {
             }
         stage('Verify The Clone') {
                 steps{
-                    sh 'ls'
+                    bat 'ls'
                 }
             }
             stage('Verify The Steps') {
                 steps{
-                    sh 'cat Jenkinsfile'
+                    bat 'cat Jenkinsfile'
                 }
             }
             
             stage('Build Docker Image') {
                 steps{
-                    sh "docker build -t fastapi:v1 ."
+                    bat "docker build -t fastapi:v1 ."
                 }
             }
             stage('Run Docker Image And Expose API'){
                 steps {
-                sh "docker run -d -p 8087:8008 --name fastapiapp fastapi:v1"
+                bat "docker run -d -p 8087:8008 --name fastapiapp fastapi:v1"
                 }
             }
             stage("Testing Application"){
