@@ -4,7 +4,6 @@ pandas
 sqlalchemy
 uvicorn
 pydantic
-psycopg2
 mysql-connector-python
 jinja2
 python-multipart
