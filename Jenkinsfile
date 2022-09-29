@@ -12,7 +12,7 @@ pipeline {
             }
         stage('Verify The Clone') {
                 steps{
-                    bat 'ls'
+                    bat 'dir'
                 }
             }
             stage('Verify The Steps') {
