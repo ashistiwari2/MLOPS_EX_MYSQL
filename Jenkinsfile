@@ -33,7 +33,7 @@ pipeline {
             }
             stage("Testing Application"){
                 steps {
-                    sh 'curl http://localhost:8091/'
+                    sh 'echo app is running on http://localhost:8091/'
 
 
 
